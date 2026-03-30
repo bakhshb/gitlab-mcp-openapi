@@ -1,0 +1,38 @@
+{
+  "name": "@bakhshb/gitlab-mcp-openapi",
+  "version": "1.0.0",
+  "description": "2-tool OpenAPI-driven MCP server for GitLab",
+  "main": "build/index.js",
+  "bin": {
+    "gitlab-mcp-openapi": "build/index.js"
+  },
+  "scripts": {
+    "build": "npm run clean && tsc && chmod 755 build/index.js",
+    "clean": "rm -rf build",
+    "start": "node build/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "gitlab",
+    "devops",
+    "mcp-server"
+  ],
+  "author": "Baraa Bakhsh",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "axios": "^1.7.0",
+    "zod": "^3.23.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "type": "module"
+}
