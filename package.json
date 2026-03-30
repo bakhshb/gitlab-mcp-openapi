@@ -20,6 +20,9 @@
   ],
   "author": "Baraa Bakhsh",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "axios": "^1.7.0",
