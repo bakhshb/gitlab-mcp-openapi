@@ -10,7 +10,7 @@ export function getGitLabApiMode() {
 export function getBaseUrl() {
     return process.env.GITLAB_API_URL ?? "https://gitlab.com";
 }
-function getHeaders() {
+export function getHeaders() {
     const headers = {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -32,7 +32,7 @@ function getHeaders() {
     }
     return headers;
 }
-function getTimeout() {
+export function getTimeout() {
     return parseInt(process.env.GITLAB_TIMEOUT ?? "30000", 10);
 }
 let clientInstance = null;

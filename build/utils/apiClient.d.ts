@@ -2,6 +2,8 @@ import { AxiosInstance } from "axios";
 export type GitLabApiMode = "oauth" | "static";
 export declare function getGitLabApiMode(): GitLabApiMode;
 export declare function getBaseUrl(): string;
+export declare function getHeaders(): Record<string, string>;
+export declare function getTimeout(): number;
 export declare function getApiClient(): AxiosInstance;
 /**
  * Reset the client (for testing or when configuration changes)

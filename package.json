@@ -9,7 +9,9 @@
   "scripts": {
     "build": "npm run clean && tsc && chmod 755 build/index.js",
     "clean": "rm -rf build",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "keywords": [
     "mcp",
@@ -32,7 +34,8 @@
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.0.0",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
   },
   "engines": {
     "node": ">=18.0.0"

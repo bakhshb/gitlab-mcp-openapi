@@ -10,8 +10,8 @@ const logger = createLogger("OpenApiSpec");
 // Resolve spec path relative to this file's location
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-// From build/utils/ → ../../reference/gitlab-filtered.yaml
-const SPEC_PATH = join(__dirname, "../../reference/gitlab-minimal.yaml");
+// From build/utils/ → ../../reference/gitlab-44tools.yaml
+const SPEC_PATH = join(__dirname, "../../reference/gitlab-44tools.yaml");
 let cachedSpec = null;
 /**
  * Loads and caches the OpenAPI spec from the local YAML file.

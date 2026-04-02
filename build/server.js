@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import * as gitlabApi from "./mcp/tools/gitlabApi.js";
-import * as gitlabSchema from "./mcp/tools/gitlabSchema.js";
+import * as gitlabApi from "./mcp/tools/api.js";
+import * as gitlabSchema from "./mcp/tools/apiSchema.js";
 export function createServer() {
     const server = new McpServer({
         name: "gitlab",

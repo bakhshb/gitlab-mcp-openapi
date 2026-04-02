@@ -48,9 +48,14 @@ npm run build
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `GITLAB_TOKEN` | **Yes** | - | GitLab Personal Access Token |
+| `GITLAB_TOKEN` | No* | - | GitLab Personal Access Token (required for static mode) |
+| `GITLAB_PERSONAL_ACCESS_TOKEN` | No | - | Alternative to GITLAB_TOKEN |
 | `GITLAB_API_URL` | No | `https://gitlab.com` | GitLab instance URL |
 | `GITLAB_TIMEOUT` | No | `30000` | Request timeout in milliseconds |
+| `OAUTH_ENABLED` | No | `false` | Enable OAuth token mode |
+| `GITLAB_OAUTH_TOKEN` | No | - | OAuth access token (used when OAUTH_ENABLED=true) |
+
+*Either `GITLAB_TOKEN`, `GITLAB_PERSONAL_ACCESS_TOKEN`, or `GITLAB_OAUTH_TOKEN` (with OAUTH_ENABLED=true) is required.
 
 ### Creating a Personal Access Token
 
@@ -65,6 +70,33 @@ npm run build
    ```bash
    export GITLAB_TOKEN=glpat-your-token-here
    ```
+
+### OAuth Mode
+
+For OAuth-based authentication (token provided by MCP runtime):
+
+```bash
+export OAUTH_ENABLED=true
+export GITLAB_OAUTH_TOKEN=your-oauth-token
+gitlab-mcp-openapi
+```
+
+In OpenClaw configuration:
+
+```json
+{
+  "mcpServers": {
+    "gitlab-mcp-openapi": {
+      "command": "gitlab-mcp-openapi",
+      "env": {
+        "GITLAB_API_URL": "https://gitlab.com",
+        "OAUTH_ENABLED": "true",
+        "GITLAB_OAUTH_TOKEN": "${GITLAB_OAUTH_TOKEN}"
+      }
+    }
+  }
+}
+```
 
 ### Self-Hosted GitLab
 
@@ -419,6 +451,12 @@ gitlab-api (generic executor)
 
 ## Development
 
+### Install Dependencies
+
+```bash
+npm install
+```
+
 ### Build
 
 ```bash
@@ -429,6 +467,18 @@ npm run build
 
 ```bash
 npm run start
+```
+
+### Test
+
+Run tests with watch mode:
+```bash
+npm test
+```
+
+Run tests once:
+```bash
+npm run test:run
 ```
 
 ### Environment Setup

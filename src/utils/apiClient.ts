@@ -21,7 +21,7 @@ export function getBaseUrl(): string {
   return process.env.GITLAB_API_URL ?? "https://gitlab.com";
 }
 
-function getHeaders(): Record<string, string> {
+export function getHeaders(): Record<string, string> {
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -46,7 +46,7 @@ function getHeaders(): Record<string, string> {
   return headers;
 }
 
-function getTimeout(): number {
+export function getTimeout(): number {
   return parseInt(process.env.GITLAB_TIMEOUT ?? "30000", 10);
 }
 
