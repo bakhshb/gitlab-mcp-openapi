@@ -2520,6 +2520,11 @@ paths:
           type: boolean
           required: false
         - in: formData
+          name: override_params[mr_default_title_template]
+          description: Template used to generate the default merge request title. Maximum 100 characters.
+          type: string
+          required: false
+        - in: formData
           name: override_params[only_allow_merge_if_all_status_checks_passed]
           description: Blocks merge requests from merging unless all status checks have passed
           type: boolean
@@ -3199,6 +3204,11 @@ paths:
           name: override_params[mr_default_target_self]
           description: Merge requests of this forked project targets itself by default
           type: boolean
+          required: false
+        - in: formData
+          name: override_params[mr_default_title_template]
+          description: Template used to generate the default merge request title. Maximum 100 characters.
+          type: string
           required: false
         - in: formData
           name: override_params[only_allow_merge_if_all_status_checks_passed]
@@ -3944,6 +3954,11 @@ paths:
           name: override_params[mr_default_target_self]
           description: Merge requests of this forked project targets itself by default
           type: boolean
+          required: false
+        - in: formData
+          name: override_params[mr_default_title_template]
+          description: Template used to generate the default merge request title. Maximum 100 characters.
+          type: string
           required: false
         - in: formData
           name: override_params[only_allow_merge_if_all_status_checks_passed]
@@ -5361,6 +5376,7 @@ paths:
             - notes
             - projects
             - issues
+            - work_items
             - merge_requests
             - milestones
             - snippet_titles
@@ -5380,6 +5396,15 @@ paths:
           name: confidential
           description: Filter results by confidentiality
           type: boolean
+          required: false
+        - in: query
+          name: type
+          description: >-
+            Filter work items by type. Only applies to work_items scope. Available types: issue, task, epic, incident,
+            test_case, requirement, objective, key_result, ticket.
+          type: array
+          items:
+            type: string
           required: false
         - in: query
           name: include_archived
@@ -5438,4 +5463,3 @@ paths:
       tags:
         - search
       operationId: getApiV4Search
-definitions: {}

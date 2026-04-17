@@ -2,7 +2,7 @@
  * Filter GitLab OpenAPI spec to include ONLY the 29 tools' endpoints
  */
 
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, statSync } from "fs";
 import * as yaml from "js-yaml";
 
 const FULL_SPEC_PATH = "/home/debian/.openclaw/workspace/work/gitlab-openapi.yaml";
@@ -121,6 +121,5 @@ writeFileSync(OUTPUT_PATH, yaml.dump(filteredSpec, { lineWidth: 120 }));
 console.log(`Done! Minimal spec written to ${OUTPUT_PATH}`);
 
 // Check size
-const fs = require("fs");
-const stats = fs.statSync(OUTPUT_PATH);
+const stats = statSync(OUTPUT_PATH);
 console.log(`Size: ${(stats.size / 1024).toFixed(1)} KB`);

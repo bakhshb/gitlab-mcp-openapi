@@ -343,9 +343,9 @@ This MCP covers **44 tools** across all major GitLab API areas:
 
 ```typescript
 {
-  path: "/api/v4/projects/{id}/merge_requests/{iid}/approve",
+  path: "/api/v4/projects/{id}/merge_requests/{merge_request_iid}/approve",
   method: "POST",
-  pathParams: { id: 15, iid: 42 }
+  pathParams: { id: 15, merge_request_iid: 42 }
 }
 ```
 

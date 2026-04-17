@@ -453,7 +453,9 @@ paths:
       operationId: deleteApiV4GroupsIdVariablesKey
   /api/v4/groups/{id}/members:
     get:
-      description: Gets a list of group or project members viewable by the authenticated user.
+      description: |-
+        Gets a list of group or project members viewable by the authenticated user,
+                  excluding those with inherited membership from ancestor groups.
       produces:
         - application/json
       parameters:
@@ -511,7 +513,9 @@ paths:
           example: 20
       responses:
         '200':
-          description: Gets a list of group or project members viewable by the authenticated user.
+          description: |-
+            Gets a list of group or project members viewable by the authenticated user,
+                      excluding those with inherited membership from ancestor groups.
           schema:
             type: array
             items:
@@ -546,9 +550,9 @@ paths:
       operationId: postApiV4GroupsIdMembers
   /api/v4/groups/{id}/members/all:
     get:
-      description: >-
-        Gets a list of group or project members viewable by the authenticated user, including those who gained
-        membership through ancestor group.
+      description: |-
+        Gets a list of group or project members viewable by the authenticated user,
+                  including those with inherited membership from ancestor groups.
       produces:
         - application/json
       parameters:
@@ -601,9 +605,9 @@ paths:
           example: 20
       responses:
         '200':
-          description: >-
-            Gets a list of group or project members viewable by the authenticated user, including those who gained
-            membership through ancestor group.
+          description: |-
+            Gets a list of group or project members viewable by the authenticated user,
+                      including those with inherited membership from ancestor groups.
           schema:
             type: array
             items:
@@ -5068,7 +5072,9 @@ paths:
       operationId: getApiV4ProjectsIdUploads
   /api/v4/projects/{id}/members:
     get:
-      description: Gets a list of group or project members viewable by the authenticated user.
+      description: |-
+        Gets a list of group or project members viewable by the authenticated user,
+                  excluding those with inherited membership from ancestor groups.
       produces:
         - application/json
       parameters:
@@ -5126,7 +5132,9 @@ paths:
           example: 20
       responses:
         '200':
-          description: Gets a list of group or project members viewable by the authenticated user.
+          description: |-
+            Gets a list of group or project members viewable by the authenticated user,
+                      excluding those with inherited membership from ancestor groups.
           schema:
             type: array
             items:
@@ -5161,9 +5169,9 @@ paths:
       operationId: postApiV4ProjectsIdMembers
   /api/v4/projects/{id}/members/all:
     get:
-      description: >-
-        Gets a list of group or project members viewable by the authenticated user, including those who gained
-        membership through ancestor group.
+      description: |-
+        Gets a list of group or project members viewable by the authenticated user,
+                  including those with inherited membership from ancestor groups.
       produces:
         - application/json
       parameters:
@@ -5216,9 +5224,9 @@ paths:
           example: 20
       responses:
         '200':
-          description: >-
-            Gets a list of group or project members viewable by the authenticated user, including those who gained
-            membership through ancestor group.
+          description: |-
+            Gets a list of group or project members viewable by the authenticated user,
+                      including those with inherited membership from ancestor groups.
           schema:
             type: array
             items:
@@ -6790,6 +6798,11 @@ paths:
           type: boolean
           required: false
         - in: formData
+          name: override_params[mr_default_title_template]
+          description: Template used to generate the default merge request title. Maximum 100 characters.
+          type: string
+          required: false
+        - in: formData
           name: override_params[only_allow_merge_if_all_status_checks_passed]
           description: Blocks merge requests from merging unless all status checks have passed
           type: boolean
@@ -7469,6 +7482,11 @@ paths:
           name: override_params[mr_default_target_self]
           description: Merge requests of this forked project targets itself by default
           type: boolean
+          required: false
+        - in: formData
+          name: override_params[mr_default_title_template]
+          description: Template used to generate the default merge request title. Maximum 100 characters.
+          type: string
           required: false
         - in: formData
           name: override_params[only_allow_merge_if_all_status_checks_passed]
@@ -8214,6 +8232,11 @@ paths:
           name: override_params[mr_default_target_self]
           description: Merge requests of this forked project targets itself by default
           type: boolean
+          required: false
+        - in: formData
+          name: override_params[mr_default_title_template]
+          description: Template used to generate the default merge request title. Maximum 100 characters.
+          type: string
           required: false
         - in: formData
           name: override_params[only_allow_merge_if_all_status_checks_passed]
@@ -10575,6 +10598,7 @@ paths:
             - notes
             - projects
             - issues
+            - work_items
             - merge_requests
             - milestones
             - snippet_titles
@@ -10594,6 +10618,15 @@ paths:
           name: confidential
           description: Filter results by confidentiality
           type: boolean
+          required: false
+        - in: query
+          name: type
+          description: >-
+            Filter work items by type. Only applies to work_items scope. Available types: issue, task, epic, incident,
+            test_case, requirement, objective, key_result, ticket.
+          type: array
+          items:
+            type: string
           required: false
         - in: query
           name: include_archived

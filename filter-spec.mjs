@@ -37,11 +37,11 @@ const NEEDED_PATTERNS = [
   "/api/v4/projects/{id}/labels",
   "/api/v4/projects/{id}/labels/{name}",
   "/api/v4/groups/{id}/labels",
-  "/api/v4/projects/{id}/merge_requests/{iid}/approve",
-  "/api/v4/projects/{id}/merge_requests/{iid}/merge",
-  "/api/v4/projects/{id}/merge_requests/{iid}/discussions",
-  "/api/v4/projects/{id}/merge_requests/{iid}/discussions/{discussion_id}",
-  "/api/v4/projects/{id}/merge_requests/{iid}/draft_notes",
+  "/api/v4/projects/{id}/merge_requests/{merge_request_iid}/approve",
+  "/api/v4/projects/{id}/merge_requests/{merge_request_iid}/merge",
+  "/api/v4/projects/{id}/merge_requests/{merge_request_iid}/discussions",
+  "/api/v4/projects/{id}/merge_requests/{merge_request_iid}/discussions/{discussion_id}",
+  "/api/v4/projects/{id}/merge_requests/{merge_request_iid}/draft_notes",
   "/api/v4/projects/{id}/repository/commits",
   "/api/v4/projects/{id}/repository/commits/{sha}",
   "/api/v4/projects/{id}/repository/commits/{sha}/diff",
@@ -96,7 +96,7 @@ for (const [path, methods] of Object.entries(fullSpec.paths)) {
     // Convert pattern to regex (simplified)
     const regexPattern = pattern
       .replace(/{id}/g, "[^/]+")
-      .replace(/{iid}/g, "[^/]+")
+      .replace(/{merge_request_iid}/g, "[^/]+")
       .replace(/{sha}/g, "[^/]+")
       .replace(/{name}/g, "[^/]+")
       .replace(/{path}/g, ".+")
