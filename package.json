@@ -1,6 +1,6 @@
 {
   "name": "@bakhshb/gitlab-mcp-openapi",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "2-tool OpenAPI-driven MCP server for GitLab",
   "main": "build/index.js",
   "bin": {
