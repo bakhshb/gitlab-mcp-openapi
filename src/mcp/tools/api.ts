@@ -27,6 +27,24 @@ export const annotations = {
   openWorldHint: true,
 };
 
+/**
+ * Match a requested path against a spec path that may contain template parameters.
+ * Returns true if there's a match, false otherwise.
+ */
+function matchSpecPath(requestedPath: string, specPath: string): boolean {
+  if (requestedPath === specPath) return true;
+  
+  const requestedSegments = requestedPath.split('/').filter(Boolean);
+  const specSegments = specPath.split('/').filter(Boolean);
+  
+  if (requestedSegments.length !== specSegments.length) return false;
+  
+  return specSegments.every((seg, i) => {
+    if (seg.startsWith('{') && seg.endsWith('}')) return true;
+    return seg === requestedSegments[i];
+  });
+}
+
 export async function handler(input: {
   path: string;
   method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
@@ -38,7 +56,9 @@ export async function handler(input: {
 
   try {
     const spec = getSpec();
-    const specPathEntry = Object.entries(spec.paths).find(([p]) => p === path);
+    
+    // Find spec path that matches the requested path (supports template paths like /projects/{id})
+    const specPathEntry = Object.entries(spec.paths).find(([p]) => matchSpecPath(path, p));
     if (!specPathEntry) {
       return ResponseFormatter.error(
         "Path not found",
